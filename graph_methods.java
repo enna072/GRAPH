@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class graph_methods {
 
@@ -67,6 +68,49 @@ public class graph_methods {
         for (int i = 0; i < size; i++)
             bfsutility(graph, visited, i);
 
+    }
+
+    public static void dfsUtility(ArrayList<Edge>[] graph, boolean[] visited, int starting_vertex) {
+        if (visited[starting_vertex] == true)
+            return;
+
+        Stack<Integer> st = new Stack<>();
+        st.push(starting_vertex);
+        visited[starting_vertex] = true;
+
+        while (!st.isEmpty()) {
+            int top = st.peek();
+            boolean HasNeigbhourLeft = false;
+
+            for (Edge e : graph[top]) {
+
+                int destination = e.getdestination();
+                if (visited[destination] == false) {
+                    st.push(destination);
+                    visited[destination] = true;
+                    HasNeigbhourLeft = true;
+                    break;
+                }
+
+            }
+            if (HasNeigbhourLeft == false) {
+                int element = st.pop();
+                System.out.print(element + " ,");
+            }
+        }
+    }
+
+    public static void dfs(ArrayList<Edge>[] graph) {
+        int size = graph.length;
+
+        boolean[] visited = new boolean[size];
+        for (int i = 0; i < size; i++) {
+            visited[i] = false;
+        }
+
+        for (int i = 0; i < size; i++) {
+            dfsUtility(graph, visited, i);
+        }
     }
 
 }

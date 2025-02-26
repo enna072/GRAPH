@@ -9,8 +9,10 @@ public class mainclass {
             System.out.println(arrayList);
         }
         System.out.println("\n\n");
+        System.out.println("BFS");
         graph_methods.bfs(graph);
-
+        System.out.println("\nDFS");
+        graph_methods.dfs(graph);
 
     }
 
